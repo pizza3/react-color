@@ -43,11 +43,16 @@ export class EditableInput extends (PureComponent || Component) {
   }
 
   getValueObjectWithLabel(value) {
+    if (this.props.label==='v'||this.props.label==='s'||this.props.label==='l'){
+      return {
+        [this.props.label]: value/100
+      }
+    }
     return {
       [this.props.label]: value
     }
   }
-
+  
   handleBlur = () => {
     if (this.state.blurValue) {
       this.setState({ value: this.state.blurValue, blurValue: null })
