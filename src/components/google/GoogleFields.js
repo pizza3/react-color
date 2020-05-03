@@ -5,7 +5,56 @@ import tinycolor from 'tinycolor2'
 
 import { EditableInput } from '../common'
 
-export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv, disableAlpha }) => {
+export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
+
+  const handleChange = (data, e) => {
+    if (data.hex) {      
+      color.isValidHex(data.hex) && onChange({
+        hex: data.hex,
+        source: 'hex',
+      }, e)
+    } else if (data.rgb) {
+      const rgbValue = data.rgb.split(',')
+      validColorString(data.rgb, 'rgb') && onChange({
+        r: rgbValue[0] || rgb.r,
+        g: rgbValue[1] || rgb.g,
+        b: rgbValue[2] || rgb.b,
+        a: 1,
+        source: 'rgb',
+      }, e)
+    } else if (data.hsv){
+      const hsvValue = data.hsv.split(',')
+      if (validColorString(data.hsv, 'hsv')){
+        hsvValue[2] = hsvValue[2].replace('%', '')
+        hsvValue[1] = hsvValue[1].replace('%', '')
+        hsvValue[0] = hsvValue[0].replace('°', '')
+        onChange({
+          h: Number(hsvValue[0]) || hsv.h,
+          s: Number(hsvValue[1]) || hsv.s,
+          v: Number(hsvValue[2]) || hsv.v,
+          source: 'hsv',
+        }, e)
+      }
+    } else if (data.hsl) {
+      const hslValue = data.hsl.split(',')
+      if (validColorString(data.hsl, 'hsl')){
+        hslValue[2] = hslValue[2].replace('%', '')
+        hslValue[1] = hslValue[1].replace('%', '')
+        hslValue[0] = hslValue[0].replace('°', '')
+        onChange({
+          h: Number(hslValue[0]) || hsl.h,
+          s: Number(hslValue[1]) || hsl.s,
+          v: Number(hslValue[2]) || hsl.v,
+          source: 'hsl',
+        }, e)
+      }
+    }
+  }
+
+  const validColorString = (string, type) => {
+    const stringWithoutDegree = string.replace('°', '')
+    return tinycolor(`${ type } (${ stringWithoutDegree })`)._ok
+  }
 
   const styles = reactCSS({
     'default': {
@@ -13,10 +62,6 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv, disableAlpha }) => 
         display: 'flex',
         height: '100px',
         marginTop: '4px',
-      },
-      single: {
-        flex: '1',
-        paddingLeft: '6px',
       },
       alpha: {
         flex: '1',
@@ -54,7 +99,6 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv, disableAlpha }) => 
         paddingLeft: '10px',
       },
       label: {
-        display: 'block',
         textAlign: 'center',
         fontSize: '12px',
         background: '#fff',
@@ -69,8 +113,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv, disableAlpha }) => 
         marginRight: 'auto',
       },
       label2: {
-        left: '9px',
-        display: 'block',
+        left: '10px',
         textAlign: 'center',
         fontSize: '12px',
         background: '#fff',
@@ -80,68 +123,13 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv, disableAlpha }) => 
         width: '32px',
         top: '-6px',
       },
-      inputParent: {
+      single: {
         flexGrow: '1',
         margin: '0px 4.4px',
       },
     },
-    'disableAlpha': {
-      alpha: {
-        display: 'none',
-      },
-    },
-  }, { disableAlpha })
+  })
 
-  const handleChange = (data, e) => {
-    if (data.hex) {      
-      color.isValidHex(data.hex) && onChange({
-        hex: data.hex,
-        source: 'hex',
-      }, e)
-    } else if (data.rgb) {
-      const rgbValue = data.rgb.split(',')      
-      rgbValue.length === 3 && tinycolor(`rgb (${ data.rgb })`)._ok && onChange({
-        r: rgbValue[0] || rgb.r,
-        g: rgbValue[1] || rgb.g,
-        b: rgbValue[2] || rgb.b,
-        a: 1,
-        source: 'rgb',
-      }, e)
-    } else if (data.hsv){
-      const hsvValue = data.hsv.split(',')
-      
-      const removedDegree = data.hsv.replace('°', '')
-      
-      if ( tinycolor(`hsv (${ removedDegree })`)._ok ){
-        if (typeof(hsvValue[2]) === 'string' && hsvValue[2].includes('%')) {
-          hsvValue[2] = hsvValue[2].replace('%', '')
-        }
-        if (typeof(hsvValue[1]) === 'string' && hsvValue[1].includes('%')) {
-          hsvValue[1] = hsvValue[1].replace('%', '') 
-        }
-        if (typeof(hsvValue[0]) === 'string' && hsvValue[0].includes('°')) {
-          hsvValue[0] = hsvValue[0].replace('°', '') 
-        }
-        
-        
-        onChange({
-          h: Number(hsvValue[0]) || hsv.h,
-          s: Number(hsvValue[1]) || hsv.s,
-          v: Number(hsvValue[2]) || hsv.v,
-          source: 'hsv',
-        }, e)
-      }
-    } else {
-      onChange({
-        h: hsl.h,
-        s: hsl.s,
-        l: hsl.l,
-        source: 'hsl',
-      }, e)
-    }
-  }
-
-  // eslint-disable-next-line no-invalid-this
   const rgbValue = `${ rgb.r }, ${ rgb.g }, ${ rgb.b }`    
   const hslValue = `${ Math.round(hsl.h) }°, ${ Math.round(hsl.s * 100) }%, ${ Math.round(hsl.l * 100) }%`
   const hsvValue = `${ Math.round(hsv.h) }°, ${ Math.round(hsv.s * 100) }%, ${ Math.round(hsv.v * 100) }%`
@@ -156,7 +144,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv, disableAlpha }) => 
           onChange={ handleChange }
         />
         <div style={ styles.column }>
-          <div style={ styles.inputParent }>
+          <div style={ styles.single }>
             <EditableInput
               style={{ input: styles.input2, label: styles.label2 }}
               label="rgb"
@@ -165,7 +153,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv, disableAlpha }) => 
               type="string"
             />
           </div>
-          <div style={ styles.inputParent }>
+          <div style={ styles.single }>
             <EditableInput
               style={{ input: styles.input2, label: styles.label2 }}
               label="hsv"
@@ -174,7 +162,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv, disableAlpha }) => 
               type="string"
             />
           </div>
-          <div style={ styles.inputParent }>
+          <div style={ styles.single }>
             <EditableInput
               style={{ input: styles.input2, label: styles.label2 }}
               label="hsl"
