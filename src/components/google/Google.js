@@ -11,7 +11,6 @@ import tinycolor from 'tinycolor2'
 
 var color1 = tinycolor("rgba( 0, 0, 0)");
 
-console.log(color1.isValid())
 export const Google = ({ width, onChange, disableAlpha, rgb, hsl, hsv, hex, renderers,
   styles: passedStyles = {}, className = '', defaultView }) => {
   const styles = reactCSS(merge({
