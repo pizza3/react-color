@@ -56,8 +56,10 @@ export class EditableInput extends (PureComponent || Component) {
 
   handleChange = (e) => {
     const value = getNumberValue(e.target.value)
-    if (!isNaN(value)) {
+    if (!isNaN(value) && !this.props.type==='string') {
       this.setUpdatedValue(value, e)
+    }else{
+      this.setUpdatedValue(e.target.value, e)
     }
   }
 
@@ -84,7 +86,7 @@ export class EditableInput extends (PureComponent || Component) {
 
     const isPercentage = getIsPercentage(e.target.value)
     this.setState({
-      value: isPercentage ? getFormattedPercentage(value) : value
+      value: isPercentage && !this.props.type==='string' ? getFormattedPercentage(value) : value
     })
   }
 
