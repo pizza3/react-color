@@ -109,11 +109,8 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv, disableAlpha }) => 
       }, e)
     } else if (data.hsv){
       const hsvValue = data.hsv.split(',')
-      console.log(data.hsv,'data.hsv');
       
-      console.log(tinycolor(`hsv (${ data.hsv })`)._ok,'isHsv');
       const removedDegree = data.hsv.replace('°', '')
-      console.log(removedDegree,'removedDegree');
       
       if ( tinycolor(`hsv (${ removedDegree })`)._ok ){
         if (typeof(hsvValue[2]) === 'string' && hsvValue[2].includes('%')) {
@@ -125,9 +122,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv, disableAlpha }) => 
         if (typeof(hsvValue[0]) === 'string' && hsvValue[0].includes('°')) {
           hsvValue[0] = hsvValue[0].replace('°', '') 
         }
-        console.log(hsvValue[0],hsvValue[1],hsvValue[2]);
         
-        console.log(Number(hsvValue[0]),Number(hsvValue[1]),Number(hsvValue[2]));
         
         onChange({
           h: Number(hsvValue[0]) || hsv.h,
