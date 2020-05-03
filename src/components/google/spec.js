@@ -35,6 +35,16 @@ test('GoogleFields renders correctly', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('GoogleFields renders correctly', () => {
+  const tree = mount(
+    <GoogleFields { ...red } />,
+  )
+
+  instance = tree.instance();
+  console.log(instance.validColorString('123 31 33', 'rgb'))
+
+})
+
 test('GooglePointer renders correctly', () => {
   const tree = renderer.create(
     <GooglePointer />,

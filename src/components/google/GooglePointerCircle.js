@@ -1,5 +1,6 @@
 import React from 'react'
 import reactCSS from 'reactcss'
+import PropTypes from 'prop-types'
 
 export const GooglePointerCircle = (props) => {
   const styles = reactCSS({
@@ -20,4 +21,18 @@ export const GooglePointerCircle = (props) => {
   )
 }
 
+GooglePointerCircle.propTypes = {
+  hsl: PropTypes.shape({
+    h: PropTypes.number,
+    s: PropTypes.number,
+    l: PropTypes.number,
+    a: PropTypes.number,
+  }),
+}
+
+GooglePointerCircle.defaultProps = {
+  hsl: { a: 1, h: 249.94, l: 0.2, s: 0.50 },
+}
+
 export default GooglePointerCircle
+

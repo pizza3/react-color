@@ -811,3 +811,49 @@ exports[`GoogleFields renders correctly 1`] = `
   </div>
 </div>
 `;
+
+exports[`GooglePointer renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "MozBorderRadius": "22px",
+      "MozTransform": "translate(-10px, -7px)",
+      "OBorderRadius": "22px",
+      "OTransform": "translate(-10px, -7px)",
+      "WebkitBorderRadius": "22px",
+      "WebkitTransform": "translate(-10px, -7px)",
+      "background": "hsl(250, 100%, 50%)",
+      "border": "2px white solid",
+      "borderRadius": "22px",
+      "height": "20px",
+      "msBorderRadius": "22px",
+      "msTransform": "translate(-10px, -7px)",
+      "transform": "translate(-10px, -7px)",
+      "width": "20px",
+    }
+  }
+/>
+`;
+
+exports[`GooglePointerCircle renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "MozBorderRadius": "22px",
+      "MozTransform": "translate(-12px, -13px)",
+      "OBorderRadius": "22px",
+      "OTransform": "translate(-12px, -13px)",
+      "WebkitBorderRadius": "22px",
+      "WebkitTransform": "translate(-12px, -13px)",
+      "background": "hsl(250, 50%, 20%)",
+      "border": "2px #fff solid",
+      "borderRadius": "22px",
+      "height": "20px",
+      "msBorderRadius": "22px",
+      "msTransform": "translate(-12px, -13px)",
+      "transform": "translate(-12px, -13px)",
+      "width": "20px",
+    }
+  }
+/>
+`;

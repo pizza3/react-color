@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import reactCSS from 'reactcss'
 import merge from 'lodash/merge'
 
-import { ColorWrap, Saturation, Hue, Checkboard } from '../common'
+import { ColorWrap, Saturation, Hue } from '../common'
 import GooglePointerCircle from './GooglePointerCircle'
 import GooglePointer from './GooglePointer'
 import GoogleFields from './GoogleFields'
 
-export const Google = ({ width, onChange, rgb, hsl, hsv, hex, renderers,
+export const Google = ({ width, onChange, rgb, hsl, hsv, hex,
   styles: passedStyles = {}, className = '', defaultView }) => {
   const styles = reactCSS(merge({
     'default': {
