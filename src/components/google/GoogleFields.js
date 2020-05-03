@@ -167,7 +167,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv, disableAlpha }) => 
               label="rgb"
               value={ rgbValue }
               onChange={ handleChange }  
-              returnType="string"
+              type="string"
             />
           </div>
           <div style={ styles.inputParent }>
@@ -176,7 +176,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv, disableAlpha }) => 
               label="hsv"
               value={ hsvValue }
               onChange={ handleChange }
-              returnType="string"
+              type="string"
             />
           </div>
           <div style={ styles.inputParent }>
