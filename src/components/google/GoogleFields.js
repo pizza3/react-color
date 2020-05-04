@@ -2,7 +2,6 @@ import React from 'react'
 import reactCSS from 'reactcss'
 import color from '../../helpers/color'
 import { EditableInput } from '../common'
-import PropTypes from 'prop-types'
 
 
 export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
@@ -28,6 +27,11 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
         hsvValue[2] = hsvValue[2].replace('%', '')
         hsvValue[1] = hsvValue[1].replace('%', '')
         hsvValue[0] = hsvValue[0].replace('°', '')
+        if (hsvValue[1] == 1) {
+          hsvValue[1] = 0.01
+        } else if (hsvValue[2] == 1) {
+          hsvValue[2] = 0.01
+        }
         onChange({
           h: Number(hsvValue[0]) || hsv.h,
           s: Number(hsvValue[1]) || hsv.s,
@@ -41,6 +45,11 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
         hslValue[2] = hslValue[2].replace('%', '')
         hslValue[1] = hslValue[1].replace('%', '')
         hslValue[0] = hslValue[0].replace('°', '')
+        if (hsvValue[1] == 1) {
+          hsvValue[1] = 0.01
+        } else if (hsvValue[2] == 1) {
+          hsvValue[2] = 0.01
+        }
         onChange({
           h: Number(hslValue[0]) || hsl.h,
           s: Number(hslValue[1]) || hsl.s,

@@ -149,12 +149,4 @@ export class EditableInput extends (PureComponent || Component) {
   }
 }
 
-EditableInput.propTypes = {
-  type:propTypes
-}
-
-EditableInput.defaultProps = {
-  type:""
-}
-
 export default EditableInput
