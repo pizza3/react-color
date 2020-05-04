@@ -1,9 +1,9 @@
 import React from 'react'
 import reactCSS from 'reactcss'
 import color from '../../helpers/color'
-import tinycolor from 'tinycolor2'
-
 import { EditableInput } from '../common'
+import PropTypes from 'prop-types'
+
 
 export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
 
@@ -15,7 +15,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
       }, e)
     } else if (data.rgb) {
       const rgbValue = data.rgb.split(',')
-      validColorString(data.rgb, 'rgb') && onChange({
+      color.validColorString(data.rgb, 'rgb') && onChange({
         r: rgbValue[0] || rgb.r,
         g: rgbValue[1] || rgb.g,
         b: rgbValue[2] || rgb.b,
@@ -24,7 +24,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
       }, e)
     } else if (data.hsv){
       const hsvValue = data.hsv.split(',')
-      if (validColorString(data.hsv, 'hsv')){
+      if (color.validColorString(data.hsv, 'hsv')){
         hsvValue[2] = hsvValue[2].replace('%', '')
         hsvValue[1] = hsvValue[1].replace('%', '')
         hsvValue[0] = hsvValue[0].replace('°', '')
@@ -37,7 +37,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
       }
     } else if (data.hsl) {
       const hslValue = data.hsl.split(',')
-      if (validColorString(data.hsl, 'hsl')){
+      if (color.validColorString(data.hsl, 'hsl')){
         hslValue[2] = hslValue[2].replace('%', '')
         hslValue[1] = hslValue[1].replace('%', '')
         hslValue[0] = hslValue[0].replace('°', '')
@@ -49,11 +49,6 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
         }, e)
       }
     }
-  }
-
-  const validColorString = (string, type) => {
-    const stringWithoutDegree = string.replace('°', '')
-    return tinycolor(`${ type } (${ stringWithoutDegree })`)._ok
   }
 
   const styles = reactCSS({
