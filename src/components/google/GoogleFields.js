@@ -154,7 +154,6 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
               label="rgb"
               value={ rgbValue }
               onChange={ handleChange }  
-              type="string"
             />
           </div>
           <div style={ styles.single }>
@@ -163,7 +162,6 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
               label="hsv"
               value={ hsvValue }
               onChange={ handleChange }
-              type="string"
             />
           </div>
           <div style={ styles.single }>
