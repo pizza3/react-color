@@ -62,7 +62,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
 
   const styles = reactCSS({
     'default': {
-      fields: {
+      wrap: {
         display: 'flex',
         height: '100px',
         marginTop: '4px',
@@ -71,13 +71,17 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
         flex: '1',
         paddingLeft: '6px',
       },
-      double: {
+      fields: {
         width: '100%',
       },
       column: {
         paddingTop: '10px',
         display: 'flex',
         justifyContent: 'space-between',
+      },
+      double: {
+        padding: '0px 4.4px',
+        boxSizing: 'border-box',
       },
       input: {
         width: '100%',
@@ -139,14 +143,16 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
   const hsvValue = `${ Math.round(hsv.h) }°, ${ Math.round(hsv.s * 100) }%, ${ Math.round(hsv.v * 100) }%`
 
   return (
-    <div style={ styles.fields } className="flexbox-fix">
-      <div style={ styles.double }>
-        <EditableInput
-          style={{ input: styles.input, label: styles.label }}
-          label="hex"
-          value={ hex }
-          onChange={ handleChange }
-        />
+    <div style={ styles.wrap } className="flexbox-fix">
+      <div style={ styles.fields }>
+        <div style={ styles.double }>
+          <EditableInput
+            style={{ input: styles.input, label: styles.label }}
+            label="hex"
+            value={ hex }
+            onChange={ handleChange }
+          />
+        </div>
         <div style={ styles.column }>
           <div style={ styles.single }>
             <EditableInput
