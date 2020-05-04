@@ -13,47 +13,47 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }) => {
         source: 'hex',
       }, e)
     } else if (data.rgb) {
-      const rgbValue = data.rgb.split(',')
-      color.validColorString(data.rgb, 'rgb') && onChange({
-        r: rgbValue[0] || rgb.r,
-        g: rgbValue[1] || rgb.g,
-        b: rgbValue[2] || rgb.b,
+      const values = data.rgb.split(',')
+      color.isvalidColorString(data.rgb, 'rgb') && onChange({
+        r: values[0],
+        g: values[1],
+        b: values[2],
         a: 1,
         source: 'rgb',
       }, e)
     } else if (data.hsv){
-      const hsvValue = data.hsv.split(',')
-      if (color.validColorString(data.hsv, 'hsv')){
-        hsvValue[2] = hsvValue[2].replace('%', '')
-        hsvValue[1] = hsvValue[1].replace('%', '')
-        hsvValue[0] = hsvValue[0].replace('°', '')
-        if (hsvValue[1] == 1) {
-          hsvValue[1] = 0.01
-        } else if (hsvValue[2] == 1) {
-          hsvValue[2] = 0.01
+      const values = data.hsv.split(',')      
+      if (color.isvalidColorString(data.hsv, 'hsv')){
+        values[2] = values[2].replace('%', '')
+        values[1] = values[1].replace('%', '')
+        values[0] = values[0].replace('°', '')
+        if (values[1] == 1) {
+          values[1] = 0.01
+        } else if (values[2] == 1) {
+          values[2] = 0.01
         }
         onChange({
-          h: Number(hsvValue[0]) || hsv.h,
-          s: Number(hsvValue[1]) || hsv.s,
-          v: Number(hsvValue[2]) || hsv.v,
+          h: Number(values[0]),
+          s: Number(values[1]),
+          v: Number(values[2]),
           source: 'hsv',
         }, e)
       }
     } else if (data.hsl) {
-      const hslValue = data.hsl.split(',')
-      if (color.validColorString(data.hsl, 'hsl')){
-        hslValue[2] = hslValue[2].replace('%', '')
-        hslValue[1] = hslValue[1].replace('%', '')
-        hslValue[0] = hslValue[0].replace('°', '')
+      const values = data.hsl.split(',')
+      if (color.isvalidColorString(data.hsl, 'hsl')){
+        values[2] = values[2].replace('%', '')
+        values[1] = values[1].replace('%', '')
+        values[0] = values[0].replace('°', '')
         if (hsvValue[1] == 1) {
           hsvValue[1] = 0.01
         } else if (hsvValue[2] == 1) {
           hsvValue[2] = 0.01
         }
         onChange({
-          h: Number(hslValue[0]) || hsl.h,
-          s: Number(hslValue[1]) || hsl.s,
-          v: Number(hslValue[2]) || hsl.v,
+          h: Number(values[0]),
+          s: Number(values[1]),
+          v: Number(values[2]),
           source: 'hsl',
         }, e)
       }

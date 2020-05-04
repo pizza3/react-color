@@ -21,10 +21,6 @@ test('Google onChange events correctly', () => {
     <Google { ...red } onChange={ changeSpy } />,
   )
   expect(changeSpy).toHaveBeenCalledTimes(0)
-
-  // TODO: check the Hue component
-  // TODO: check the ChromeFields
-  // TODO: check Saturation
 })
 
 
