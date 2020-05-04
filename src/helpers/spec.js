@@ -169,7 +169,7 @@ describe('helpers/color', () => {
       expect(color.isvalidColorString('200, 12%, 93%', 'hsl')).toBeTruthy()
       expect(color.isvalidColorString('200, 120, 93%', 'hsl')).toBeTruthy()
       expect(color.isvalidColorString('-210, 120, 93%', 'hsl')).toBeTruthy()
-      expect(color.isvalidColorString('335°, 64%, 99%', 'hsl')).toBeFalsy()
+      expect(color.isvalidColorString('335°, 64%, 99%', 'hsl')).toBeTruthy()
       expect(color.isvalidColorString('100', 'hsl')).toBeFalsy()
       expect(color.isvalidColorString('20, 32', 'hsl')).toBeFalsy()
     })
@@ -178,7 +178,7 @@ describe('helpers/color', () => {
     test('checks for valid HSV string', () => {
       expect(color.isvalidColorString('200, 12, 93', 'hsv')).toBeTruthy()
       expect(color.isvalidColorString('200, 120, 93%', 'hsv')).toBeTruthy()
-      expect(color.isvalidColorString('335°, 64%, 99%', 'hsv')).toBeFalsy()
+      expect(color.isvalidColorString('200°, 6%, 100%', 'hsv')).toBeTruthy()
       expect(color.isvalidColorString('1', 'hsv')).toBeFalsy()
       expect(color.isvalidColorString('20, 32', 'hsv')).toBeFalsy()
     })

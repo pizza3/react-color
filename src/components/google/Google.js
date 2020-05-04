@@ -15,7 +15,6 @@ export const Google = ({ width, onChange, rgb, hsl, hsv, hex,
       picker: {
         width,
         background: '#fff',
-        borderRadius: '2px',
         border: '1px solid #dfe1e5',
         boxSizing: 'initial',
         fontFamily: 'Menlo',
@@ -26,11 +25,7 @@ export const Google = ({ width, onChange, rgb, hsl, hsv, hex,
         width: '70%',
         padding: '0px',
         position: 'relative',
-        borderRadius: '0 2px 0 0',
         overflow: 'hidden',
-      },
-      Saturation: {
-        radius: '0 2px 0 0',
       },
       swatch: {
         width: '30%',
@@ -38,7 +33,6 @@ export const Google = ({ width, onChange, rgb, hsl, hsv, hex,
         padding: '0px',
         background: `rgba(${ rgb.r }, ${ rgb.g }, ${ rgb.b }, 1)`,
         position: 'relative',
-        borderRadius: '2px 0 0 0',
         overflow: 'hidden',
       },
       body: {
@@ -70,7 +64,6 @@ export const Google = ({ width, onChange, rgb, hsl, hsv, hex,
       <div style={ styles.swatch } />
       <div style={ styles.saturation }>
         <Saturation
-          style={ styles.Saturation }
           hsl={ hsl }
           hsv={ hsv }
           pointer={ GooglePointerCircle }
